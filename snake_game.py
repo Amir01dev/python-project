@@ -1,11 +1,23 @@
 from tkinter import *
-# ----------function game-------------
+# -------------------------------------
+
+class Snake:
+    def __init__(self):
+        self.body_size = BODY_SIZE
+        self.coordinates = []
+        self.squares = []
+        for i in range(0, BODY_SIZE):
+            self.coordinates.append([0, 0])
+        for x, y in self.coordinates:
+            square = Canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=SNAKE_COLOR, tags="snake")
+            self.squares.append(square)
 def restart_button():
     pass
 # ----------variables game-------------
 GAME_WIDTH = 700
 GAME_HEIGHT = 700
 SPACE_SIZE = 30
+BODY_SIZE = 2
 SLOWNESS = 200
 SNAKE_COLOR = "yellow"
 FOOD_COLOR = "red"
