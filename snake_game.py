@@ -1,4 +1,5 @@
 from tkinter import *
+from random import randint
 # -------------------------------------
 
 class Snake:
@@ -9,8 +10,16 @@ class Snake:
         for i in range(0, BODY_SIZE):
             self.coordinates.append([0, 0])
         for x, y in self.coordinates:
-            square = Canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=SNAKE_COLOR, tags="snake")
+            square = canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=SNAKE_COLOR, tags="snake")
             self.squares.append(square)
+
+
+class Food:
+    def __init__(self):
+        x = randint(0, (GAME_WIDTH // SPACE_SIZE) - 1) * SPACE_SIZE
+        y = randint(0, (GAME_HEIGHT // SPACE_SIZE) - 1) * SPACE_SIZE
+        self.coordinates = [x, y]
+        canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOR, tags="food")
 def restart_button():
     pass
 # ----------variables game-------------
@@ -52,5 +61,8 @@ x = int((screen_width / 2) - (window_width / 2))
 y = int((screen_height / 2) - (window_height / 2))
 
 window.geometry(f"{window_width}x{window_height}+{x}+{y}")
+
+snake = Snake()
+food = Food()
 
 window.mainloop()
