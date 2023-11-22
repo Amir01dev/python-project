@@ -49,13 +49,24 @@ def next_turn(snake, food):
         canvas.delete(snake.squares[-1])
         del snake.squares[-1]
 
-    if check_game_over():
+    if check_game_over(snake):
         game_over()
     else:
         window.after(SLOWNESS, next_turn, snake, food)
 
-def check_game_over():
-    pass
+def check_game_over(snake):
+    x, y = snake.coordinates[0]
+
+    if x < 0 or x > GAME_WIDTH:
+        return True
+    if y < 0 or y > GAME_HEIGHT:
+        return True
+
+    for sq in snake.coordinates[1:]:
+        if x == sq[0] and y == sq[1]:
+            return True
+
+    return False
 def game_over():
     pass
 def restart_button():
