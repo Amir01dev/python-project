@@ -38,10 +38,10 @@ def next_turn(snake, food):
     square = canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=SNAKE_COLOR)
     snake.squares.insert(0, square)
 
-    if x == snake.coordinates[0] and y == snake.coordinates[1]:
+    if x == food.coordinates[0] and y == food.coordinates[1]:
         global score
         score += 1
-        Label(text=f"Score: {score}")
+        label.config(text=f"Score: {score}")
         canvas.delete("food")
         food = Food()
     else:
@@ -61,8 +61,20 @@ def game_over():
 def restart_button():
     pass
 
-def change_direction():
-    pass
+def change_direction(new_dir):
+    global direction
+    if new_dir == "left":
+        if direction != "right":
+            direction = new_dir
+    elif new_dir == "right":
+        if direction != "left":
+            direction = new_dir
+    elif new_dir == "up":
+        if direction != "down":
+            direction = new_dir
+    elif new_dir == "down":
+        if direction != "up":
+            direction = new_dir
 # ----------variables game-------------
 GAME_WIDTH = 700
 GAME_HEIGHT = 700
