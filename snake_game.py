@@ -1,5 +1,7 @@
 from tkinter import *
 from random import randint
+import sys
+import os
 # -------------------------------------
 
 class Snake:
@@ -71,7 +73,8 @@ def game_over():
     canvas.delete(ALL)
     canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, font=("Terminal", 60), text="GAME OVER!", fill="red")
 def restart_button():
-    pass
+    path = sys.executable
+    os.execl(path, path, *sys.argv)
 
 def change_direction(new_dir):
     global direction
