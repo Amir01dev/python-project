@@ -19,7 +19,7 @@ class Food:
         x = randint(0, (GAME_WIDTH // SPACE_SIZE) - 1) * SPACE_SIZE
         y = randint(0, (GAME_HEIGHT // SPACE_SIZE) - 1) * SPACE_SIZE
         self.coordinates = [x, y]
-        canvas.create_rectangle(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOR, tags="food")
+        canvas.create_oval(x, y, x + SPACE_SIZE, y + SPACE_SIZE, fill=FOOD_COLOR, tags="food")
 
 
 def next_turn(snake, food):
@@ -68,7 +68,8 @@ def check_game_over(snake):
 
     return False
 def game_over():
-    pass
+    canvas.delete(ALL)
+    canvas.create_text(canvas.winfo_width() / 2, canvas.winfo_height() / 2, font=("Terminal", 60), text="GAME OVER!", fill="red")
 def restart_button():
     pass
 
